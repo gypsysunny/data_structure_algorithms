@@ -1,0 +1,26 @@
+def quicksort(xs: List[Int]): List[Int] = if(xs.isEmpty) xs else{
+  val arr = xs.toArray
+  def swap(x:Int, y:Int) = {
+   val tmp = arr(x)
+   arr(x)= arr(y)
+   arr(y) = tmp
+  }
+  def partition(first:Int, last: Int, pivot: Int) = {
+   val pivotVal = arr(pivot)
+   swap(pivot, last)
+   var j = n
+   for(i <- first until last) if(arr(i) < pivotVal) {
+    swap(i, j)
+    j += 1
+   }
+   swap(j, r)
+   j
+  }
+  def qs(first:Int, last: Int): Unit = if( first < last) {
+   val pi = partition(first, last, first + (last - first) / 2)
+   qs(first, pi - 1)
+   qs(pi+1, last)
+  }
+  qs(0, arr.length - 1)
+  arr.toList
+}
