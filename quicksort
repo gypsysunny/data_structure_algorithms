@@ -24,3 +24,31 @@ def quicksort(xs: List[Int]): List[Int] = if(xs.isEmpty) xs else{
   qs(0, arr.length - 1)
   arr.toList
 }
+
+
+def quickSort(array: Array[Int]): Array[Int] = {
+    if(array.length <= 1)
+      return array
+
+    val arrBuff = array.toBuffer
+
+    val pivot = selectPivot(array)
+
+    arrBuff -= pivot
+
+    val (less, greater) = arrBuff.toArray.partition(_ <= pivot)
+
+    Array.concat(quickSort(less), Array(pivot), quickSort(greater))
+  }
+
+  def selectPivot(array: Array[Int]): Int = {
+    val first = array.head
+    val middle = array(array.length / 2)
+    val last = array.last
+
+    math.max(math.max(first, middle), last) match {
+      case `first` => math.max(middle, last)
+      case `middle` => math.max(first, last)
+      case `last` => math.max(first, middle)
+    }
+  }
