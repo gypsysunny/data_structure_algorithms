@@ -8,12 +8,12 @@ def quicksort(xs: List[Int]): List[Int] = if(xs.isEmpty) xs else{
   def partition(first:Int, last: Int, pivot: Int) = {
    val pivotVal = arr(pivot)
    swap(pivot, last)
-   var j = n
+   var j = first
    for(i <- first until last) if(arr(i) < pivotVal) {
     swap(i, j)
     j += 1
    }
-   swap(j, r)
+   swap(j, last)
    j
   }
   def qs(first:Int, last: Int): Unit = if( first < last) {
